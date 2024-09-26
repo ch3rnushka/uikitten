@@ -1,47 +1,51 @@
 import React from "react";
-import styled from "@emotion/styled";
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/system';
 
 export type PlantCardProps = {
-  name: string;
-  imageUrl: string;
+    name: string;
+    imageUrl: string;
 };
 
-const Card = styled.div`
-  width: 200px;
-  height: 250px;
-  padding: 16px;
-  border: none;
-  border-radius: 12px;
-  background-color: #ffffff;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+const StyledCard = styled(Card)`
+    width: 250px;
+    height: 300px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 
-  &:hover {
-    transform: translateY(-5px);
-  }
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 80%;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 16px;
-`;
-
-const Name = styled.h2`
-  font-size: 20px;
-  color: #333333;
-  margin-top: 0;
-  font-family: "Roboto", sans-serif;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
 `;
 
 const PlantCard: React.FC<PlantCardProps> = ({ name, imageUrl }) => (
-  <Card>
-    <Image src={imageUrl} alt={name} />
-    <Name>{name}</Name>
-  </Card>
+    <StyledCard>
+        <CardMedia
+            component="img"
+            image={imageUrl}
+            alt={name}
+            style={{
+                height: '200px',
+                borderRadius: '50%',
+                margin: '16px auto',
+                width: '80%',
+                objectFit: 'cover',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+            }}
+        />
+        <CardContent>
+            <Typography variant="h6" component="div" style={{ fontFamily: 'Poppins', fontWeight: 600 }}>
+                {name}
+            </Typography>
+        </CardContent>
+    </StyledCard>
 );
 
 export default PlantCard;
